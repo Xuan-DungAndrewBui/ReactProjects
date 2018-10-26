@@ -1,0 +1,17 @@
+.calculator-display {
+    color: white;
+    background: #1c191c;
+    line-height: 130px;
+    font-size: 3em;
+    
+    flex: 1;
+  }
+
+  .calculator-key {
+    width: 80px;
+    height: 80px;
+    border-top: 1px solid #777;
+    border-right: 1px solid #666;  
+    text-align: center;
+    line-height: 80px;
+  }
