@@ -1,15 +1,12 @@
 import React from 'react'
+import '../index.css'
 
-class Topbar extends React.Component {
-    render() {
-        return (
+const Topbar = (props) => (
             <div>
-            <button onClick={this.props.show}>Show/Hide</button>
-            <button onClick={this.props.maximise}>Maximise</button>
-            <button onClick={this.props.exit}>Exit</button>
+                <button className="close" onClick={props.exit}></button>
+                <button className="minimise"onClick={props.show}></button>
+                <button className="maximise" onClick={props.maximise}></button>
             </div>
-        )
-    }
-}
+)
 
 export default Topbar;
