@@ -2,6 +2,7 @@ import React from 'react';
 import Calculator from './Calculator';
 import Topbar from './Topbar';
 
+
 //App takes in all components for the overall app
 class App extends React.Component {
     constructor(props) {
@@ -10,10 +11,12 @@ class App extends React.Component {
             show: true,
             maximise: false,
             exit: false,
+            colour: "dark",
         };
     this.show=this.show.bind(this);
     this.maximise=this.maximise.bind(this);
     this.exit=this.exit.bind(this);
+    this.changeColour=this.changeColour.bind(this);
     }
 
     maximise() {
@@ -38,14 +41,23 @@ class App extends React.Component {
             })
         }
         return null
+    }
 
+    changeColour(colour) {
+        this.setState({
+            colour: colour,
+        })
     }
 
     render() {
+        if (this.state.exit === true) {
+            return null;
+        }
+
         return (
-            <div>
-            <Topbar show={this.show} maximise={this.maximise} exit={this.exit}/>
-            <Calculator show={this.state.show} maximise={this.state.maximise} exit={this.state.exit}/>
+            <div className={"App" + (this.state.maximise ? '-maximise' : '') + ` app-${this.state.colour}`}>
+                <Topbar show={this.show} maximise={this.maximise} exit={this.exit} changeColour={this.changeColour}/>
+                <Calculator show={this.state.show} colour={this.state.colour}/>
             </div>
         )
     }

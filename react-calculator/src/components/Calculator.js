@@ -59,18 +59,22 @@ class Calculator extends React.Component {
     }
     //Basic functionality of inputting a number into the display
     addInput(number) {
+        if (this.state.displayValue.length >= 14) {
+            return (alert("Exceeded maximum characters (14 characters)"))
+        }
+
         const needOperator = this.state.needOperator;
         if (needOperator) {
-        this.setState({
-            displayValue: String(number),
-            needOperator: false
-        });
+            this.setState({
+                displayValue: String(number),
+                needOperator: false
+            });
         } else {
             const combine = String(this.state.displayValue) + String(number);
             this.setState({
                 displayValue: combine,
             });
-        }            
+        }           
     }
     
     clearAll() {
@@ -108,90 +112,46 @@ class Calculator extends React.Component {
         if (this.props.show === false) {
             return null;
         }
-        if (this.props.exit === true) {
-            return null;
-        }
-
+        const colour = this.props.colour;
         const displayValue = this.state.displayValue;
         
-        if (displayValue.length === 15) {
-            alert("It is overflowing")
-        }
-
         return (
-            // <div className="calculator">    
-            //     <div>
-            //         <Display output={displayValue} />
-            //     </div>
-            //     <div>
-            //         <div>
-            //             <Key className="function" value={'C'} onClick={() => this.clearAll()}/>
-            //             <Key className="function"  value={'+/-'} onClick={() => this.changeSign()}/>
-            //             <Key className="function" value={'%'} onClick={() => this.setPercent()}/>
-            //             <Key className="operator" value={'÷'} onClick={() => this.setOperation('/')}/>
-            //         </div>
-            //         <div>
-            //             <Key value={'7'} onClick={() => this.addInput(7)} />
-            //             <Key value={'8'} onClick={() => this.addInput(8)} />
-            //             <Key value={'9'} onClick={() => this.addInput(9)} />
-            //             <Key className="operator" value={'x'} onClick={() => this.setOperation('*')}/>
-            //         </div>
-            //         <div>
-            //             <Key value={'4'} onClick={() => this.addInput(4)} />
-            //             <Key value={'5'} onClick={() => this.addInput(5)} />
-            //             <Key value={'6'} onClick={() => this.addInput(6)} />
-            //             <Key className="operator" value={'-'} onClick={() => this.setOperation('-')}/>
-            //         </div>
-            //         <div>
-            //             <Key value={'1'} onClick={() => this.addInput(1)} />
-            //             <Key value={'2'} onClick={() => this.addInput(2)} />
-            //             <Key value={'3'} onClick={() => this.addInput(3)} />
-            //             <Key className="operator" value={'+'} onClick={() => this.setOperation('+')}/>
-            //         </div>
-            //         <div>
-            //             <Key className="key-0" value={'0'} onClick={() => this.addInput(0)}/>
-            //             <Key value={'.'} onClick={() => this.addInput('.')}/>
-            //             <Key className="operator" value={'='} onClick={() => this.setOperation('=')}/>
-            //         </div>
-            //     </div>
-            // </div>
-            <table cellSpacing="0" className={"calculator" + (this.props.maximise ? '-maximise' : '')}>
+            <table cellSpacing="0" className="calculator">
                 <tr>
                     <td colSpan="4"><Display output={displayValue} /></td>
                 </tr>
                 <tr>
-                    <td><Key className="function" value={'C'} onClick={() => this.clearAll()}/></td>
-                    <td><Key className="function"  value={'+/-'} onClick={() => this.changeSign()}/></td>
-                    <td><Key className="function" value={'%'} onClick={() => this.setPercent()}/></td>
-                    <td><Key className="operator" value={'÷'} onClick={() => this.setOperation('/')}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'C'} onClick={() => this.clearAll()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'+/-'} onClick={() => this.changeSign()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'%'} onClick={() => this.setPercent()}/></td>
+                    <td><Key className="operator" value={'÷'} colour={colour} onClick={() => this.setOperation('/')}/></td>
                 </tr>
                 <tr>
-                    <td><Key value={'7'} onClick={() => this.addInput(7)} /></td>
-                    <td><Key value={'8'} onClick={() => this.addInput(8)} /></td>
-                    <td><Key value={'9'} onClick={() => this.addInput(9)} /></td>
-                    <td><Key className="operator" value={'x'} onClick={() => this.setOperation('*')}/></td>
+                    <td><Key value={'7'} colour={colour} onClick={() => this.addInput(7)} /></td>
+                    <td><Key value={'8'} colour={colour} onClick={() => this.addInput(8)} /></td>
+                    <td><Key value={'9'} colour={colour} onClick={() => this.addInput(9)} /></td>
+                    <td><Key className="operator" value={'x'} colour={colour} onClick={() => this.setOperation('*')}/></td>
                 </tr>
                 <tr>
-                    <td><Key value={'4'} onClick={() => this.addInput(4)} /></td>
-                    <td><Key value={'5'} onClick={() => this.addInput(5)} /></td>
-                    <td><Key value={'6'} onClick={() => this.addInput(6)} /></td>
-                    <td><Key className="operator" value={'-'} onClick={() => this.setOperation('-')}/></td>
+                    <td><Key value={'4'} colour={colour} onClick={() => this.addInput(4)} /></td>
+                    <td><Key value={'5'} colour={colour} onClick={() => this.addInput(5)} /></td>
+                    <td><Key value={'6'} colour={colour} onClick={() => this.addInput(6)} /></td>
+                    <td><Key className="operator" value={'-'} colour={colour} onClick={() => this.setOperation('-')}/></td>
                 </tr>
                 <tr>
-                    <td><Key value={'1'} onClick={() => this.addInput(1)} /></td>
-                    <td><Key value={'2'} onClick={() => this.addInput(2)} /></td>
-                    <td><Key value={'3'} onClick={() => this.addInput(3)} /></td>
-                    <td><Key className="operator" value={'+'} onClick={() => this.setOperation('+')}/></td>
+                    <td><Key value={'1'} colour={colour} onClick={() => this.addInput(1)} /></td>
+                    <td><Key value={'2'} colour={colour} onClick={() => this.addInput(2)} /></td>
+                    <td><Key value={'3'} colour={colour} onClick={() => this.addInput(3)} /></td>
+                    <td><Key className="operator" value={'+'} colour={colour} onClick={() => this.setOperation('+')}/></td>
                 </tr>
                 <tr>
-                    <td colSpan="2"><Key value={'0'} onClick={() => this.addInput(0)}/></td>
-                    <td><Key value={'.'} onClick={() => this.addInput('.')}/></td>
-                    <td><Key className="operator" value={'='} onClick={() => this.setOperation('=')}/></td>
+                    <td colSpan="2"><Key value={'0'} colour={colour} onClick={() => this.addInput(0)}/></td>
+                    <td><Key value={'.'} colour={colour} onClick={() => this.addInput('.')}/></td>
+                    <td><Key className="operator" value={'='} colour={colour} onClick={() => this.setOperation('=')}/></td>
                 </tr>
             </table>
         )
     }
-    
 }
 
 export default Calculator
