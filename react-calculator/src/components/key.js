@@ -1,6 +1,6 @@
 import React from 'react';
 import '../index.css'
-//Key has value that given from App
+//Key has value given from Calculator
 const Key = (props) => (
     <button className={`calculator-key-${props.colour} ${props.className}`} onClick={props.onClick}>
         {props.value}

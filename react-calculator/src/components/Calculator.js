@@ -1,7 +1,7 @@
 import React from 'react';
 import Display from './display';
 import Key from './key';
-import '../index.css'
+import '../index.css';
 
 const calcExpression = {
     '+': function(firstValue, secondValue ) { return firstValue+secondValue },
@@ -41,7 +41,7 @@ class Calculator extends React.Component {
 
         this.setState({
             operator: operator,
-            needOperator: true
+            needOperator: true,
         });
         } 
 
@@ -59,10 +59,6 @@ class Calculator extends React.Component {
     }
     //Basic functionality of inputting a number into the display
     addInput(number) {
-        if (this.state.displayValue.length >= 14) {
-            return (alert("Exceeded maximum characters (14 characters)"))
-        }
-
         const needOperator = this.state.needOperator;
         if (needOperator) {
             this.setState({
@@ -70,7 +66,7 @@ class Calculator extends React.Component {
                 needOperator: false
             });
         } else {
-            const combine = String(this.state.displayValue) + String(number);
+            const combine = String(this.state.displayValue) + String(number); 
             this.setState({
                 displayValue: combine,
             });
@@ -118,7 +114,9 @@ class Calculator extends React.Component {
         return (
             <table cellSpacing="0" className="calculator">
                 <tr>
-                    <td colSpan="4"><Display output={displayValue} /></td>
+                    <td colSpan="4">
+                        <Display output={displayValue} />
+                    </td>
                 </tr>
                 <tr>
                     <td><Key className={"function-"+colour} colour={colour} value={'C'} onClick={() => this.clearAll()}/></td>

@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 import Topbar from './Topbar';
 
 
-//App takes in all components for the overall app
+//App takes in all components for the overall application
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +22,8 @@ class App extends React.Component {
     maximise() {
         const maximise = this.state.maximise;
         this.setState({
-            maximise: !maximise
+            maximise: !maximise,
+            show: !this.state.show ? true: this.state.show,
         })
     }
 
