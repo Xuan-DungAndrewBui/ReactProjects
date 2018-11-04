@@ -103,6 +103,21 @@ class Calculator extends React.Component {
         })
     }
 
+    scientificInput() {
+        alert("Scientific mode is demo only!");
+    }
+
+    decimalInput() {
+        const displayValue = this.state.displayValue;
+        if (displayValue.indexOf('.') > -1) {
+            return null;
+        } else {
+            this.setState({
+                displayValue: displayValue + '.',
+            })
+        }
+    }
+
     //Break the calculator into display and keys
     render() {
         if (this.props.show === false) {
@@ -110,45 +125,121 @@ class Calculator extends React.Component {
         }
         const colour = this.props.colour;
         const displayValue = this.state.displayValue;
-        
-        return (
-            <table cellSpacing="0" className="calculator">
+        const scientific = this.props.scientific;
+
+        if (scientific) {
+            return (
+                <table cellSpacing="0" className="calculator">
+                <tbody>
                 <tr>
-                    <td colSpan="4">
+                    <td colSpan="10">
                         <Display output={displayValue} />
                     </td>
                 </tr>
                 <tr>
+                    <td><Key className={"function-"+colour} colour={colour} value={'('} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={')'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'mc'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'m+'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'m-'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'mr'} onClick={() => this.scientificInput()}/></td>
                     <td><Key className={"function-"+colour} colour={colour} value={'C'} onClick={() => this.clearAll()}/></td>
                     <td><Key className={"function-"+colour} colour={colour} value={'+/-'} onClick={() => this.changeSign()}/></td>
                     <td><Key className={"function-"+colour} colour={colour} value={'%'} onClick={() => this.setPercent()}/></td>
                     <td><Key className="operator" value={'÷'} colour={colour} onClick={() => this.setOperation('/')}/></td>
                 </tr>
                 <tr>
+                    <td><Key className={"function-"+colour} colour={colour} value={'2nd'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'x^2'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'x^3'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'x^y'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'e^x'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'10^x'} onClick={() => this.scientificInput()}/></td>
                     <td><Key value={'7'} colour={colour} onClick={() => this.addInput(7)} /></td>
                     <td><Key value={'8'} colour={colour} onClick={() => this.addInput(8)} /></td>
                     <td><Key value={'9'} colour={colour} onClick={() => this.addInput(9)} /></td>
                     <td><Key className="operator" value={'x'} colour={colour} onClick={() => this.setOperation('*')}/></td>
                 </tr>
                 <tr>
+                    <td><Key className={"function-"+colour} colour={colour} value={'1/x'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'sqrt'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'cbrt'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'root'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'ln'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'log10'} onClick={() => this.scientificInput()}/></td>
                     <td><Key value={'4'} colour={colour} onClick={() => this.addInput(4)} /></td>
                     <td><Key value={'5'} colour={colour} onClick={() => this.addInput(5)} /></td>
                     <td><Key value={'6'} colour={colour} onClick={() => this.addInput(6)} /></td>
                     <td><Key className="operator" value={'-'} colour={colour} onClick={() => this.setOperation('-')}/></td>
                 </tr>
                 <tr>
+                    <td><Key className={"function-"+colour} colour={colour} value={'x!'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'sin'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'cos'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'tan'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'e'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'EE'} onClick={() => this.scientificInput()}/></td>
                     <td><Key value={'1'} colour={colour} onClick={() => this.addInput(1)} /></td>
                     <td><Key value={'2'} colour={colour} onClick={() => this.addInput(2)} /></td>
                     <td><Key value={'3'} colour={colour} onClick={() => this.addInput(3)} /></td>
                     <td><Key className="operator" value={'+'} colour={colour} onClick={() => this.setOperation('+')}/></td>
                 </tr>
                 <tr>
+                    <td><Key className={"function-"+colour} colour={colour} value={'Rad'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'sinh'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'cosh'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'tanh'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'pi'} onClick={() => this.scientificInput()}/></td>
+                    <td><Key className={"function-"+colour} colour={colour} value={'Rand'} onClick={() => this.scientificInput()}/></td>
                     <td colSpan="2"><Key value={'0'} colour={colour} onClick={() => this.addInput(0)}/></td>
-                    <td><Key value={'.'} colour={colour} onClick={() => this.addInput('.')}/></td>
+                    <td><Key value={'.'} colour={colour} onClick={() => this.decimalInput()}/></td>
                     <td><Key className="operator" value={'='} colour={colour} onClick={() => this.setOperation('=')}/></td>
                 </tr>
+                </tbody>
             </table>
-        )
+            )
+        } else {
+            return (
+            <table cellSpacing="0" className="calculator">
+            <tbody>
+            <tr>
+                <td colSpan="4">
+                    <Display output={displayValue} />
+                </td>
+            </tr>
+            <tr>
+                <td><Key className={"function-"+colour} colour={colour} value={'C'} onClick={() => this.clearAll()}/></td>
+                <td><Key className={"function-"+colour} colour={colour} value={'+/-'} onClick={() => this.changeSign()}/></td>
+                <td><Key className={"function-"+colour} colour={colour} value={'%'} onClick={() => this.setPercent()}/></td>
+                <td><Key className="operator" value={'÷'} colour={colour} onClick={() => this.setOperation('/')}/></td>
+            </tr>
+            <tr>
+                <td><Key value={'7'} colour={colour} onClick={() => this.addInput(7)} /></td>
+                <td><Key value={'8'} colour={colour} onClick={() => this.addInput(8)} /></td>
+                <td><Key value={'9'} colour={colour} onClick={() => this.addInput(9)} /></td>
+                <td><Key className="operator" value={'x'} colour={colour} onClick={() => this.setOperation('*')}/></td>
+            </tr>
+            <tr>
+                <td><Key value={'4'} colour={colour} onClick={() => this.addInput(4)} /></td>
+                <td><Key value={'5'} colour={colour} onClick={() => this.addInput(5)} /></td>
+                <td><Key value={'6'} colour={colour} onClick={() => this.addInput(6)} /></td>
+                <td><Key className="operator" value={'-'} colour={colour} onClick={() => this.setOperation('-')}/></td>
+            </tr>
+            <tr>
+                <td><Key value={'1'} colour={colour} onClick={() => this.addInput(1)} /></td>
+                <td><Key value={'2'} colour={colour} onClick={() => this.addInput(2)} /></td>
+                <td><Key value={'3'} colour={colour} onClick={() => this.addInput(3)} /></td>
+                <td><Key className="operator" value={'+'} colour={colour} onClick={() => this.setOperation('+')}/></td>
+            </tr>
+            <tr>
+                <td colSpan="2"><Key value={'0'} colour={colour} onClick={() => this.addInput(0)}/></td>
+                <td><Key value={'.'} colour={colour} onClick={() => this.decimalInput()}/></td>
+                <td><Key className="operator" value={'='} colour={colour} onClick={() => this.setOperation('=')}/></td>
+            </tr>
+            </tbody>
+        </table>
+            )
+        }
     }
 }
 

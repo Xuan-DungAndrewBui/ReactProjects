@@ -12,11 +12,13 @@ class App extends React.Component {
             maximise: false,
             exit: false,
             colour: "dark",
+            scientific: false,
         };
     this.show=this.show.bind(this);
     this.maximise=this.maximise.bind(this);
     this.exit=this.exit.bind(this);
     this.changeColour=this.changeColour.bind(this);
+    this.changeFormat=this.changeFormat.bind(this);
     }
 
     maximise() {
@@ -50,15 +52,22 @@ class App extends React.Component {
         })
     }
 
+    changeFormat() {
+        const scientific = this.state.scientific;
+        this.setState({
+            scientific: !scientific,
+        })
+    }
+
     render() {
         if (this.state.exit === true) {
             return null;
         }
 
         return (
-            <div className={"App" + (this.state.maximise ? '-maximise' : '') + ` app-${this.state.colour}`}>
-                <Topbar show={this.show} maximise={this.maximise} exit={this.exit} changeColour={this.changeColour}/>
-                <Calculator show={this.state.show} colour={this.state.colour}/>
+            <div className={"App" + (this.state.maximise ? '-maximise' : '') + ` app-${this.state.colour}` + (this.state.scientific ? ' scientific': '')} style={{display: 'inline-block'}}>
+                <Topbar show={this.show} maximise={this.maximise} exit={this.exit} changeColour={this.changeColour} changeFormat={this.changeFormat}/>
+                <Calculator show={this.state.show} colour={this.state.colour} scientific={this.state.scientific}/>
             </div>
         )
     }

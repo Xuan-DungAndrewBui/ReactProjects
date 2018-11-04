@@ -3,9 +3,13 @@
   width: 320px;
 }
 
-.App-maximise {
+.App-maximise, .scientific {
   font-family: 'Roboto', sans-serif;
-  width: 600px;
+  width: 100%;
+}
+
+.scientific {
+  width: 800px
 }
 
 .app-dark {
@@ -16,7 +20,7 @@
   background: #A1A1A1;
 }
 
-.dark-button, .light-button {
+.dark-button, .light-button, .scientific-button {
     background: none;
     color: white;
     border: none;
@@ -38,8 +42,10 @@
     line-height: 80px;
     font-size: 2em;
     font-family: inherit;
-    flex: 1;
+    /* flex: 1; */
     cursor: pointer;
+    float: left;
+    display: block;
   }
 
   .calculator-key-light {
@@ -54,8 +60,9 @@
     line-height: 80px;
     font-size: 2em;
     font-family: inherit;
-    flex: 1;
+    /* flex: 1; */
     cursor: pointer;
+    display: block;
   }
   .function-dark {
     background-color: #4F4F4F;
@@ -69,11 +76,16 @@
   width: inherit;
   height: inherit;
   table-layout: fixed;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 td {
   padding: 0px;
+  /* display: block; */
+}
+
+tr {
+  /* display: inline-block; */
 }
 
 button {
@@ -143,3 +155,9 @@ button {
   background-color: orange;
 }
 
+.scientific-hidden {
+  display: none;
+}
+
+.scientific-show {
+}
