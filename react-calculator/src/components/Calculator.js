@@ -232,7 +232,7 @@ class Calculator extends React.Component {
                 <td><Key className="operator" value={'+'} colour={colour} onClick={() => this.setOperation('+')}/></td>
             </tr>
             <tr>
-                <td colSpan="2"><Key value={'0'} colour={colour} onClick={() => this.addInput(0)}/></td>
+                <td colSpan="2"><Key  className="key-0"  value={'0'} colour={colour} onClick={() => this.addInput(0)}/></td>
                 <td><Key value={'.'} colour={colour} onClick={() => this.decimalInput()}/></td>
                 <td><Key className="operator" value={'='} colour={colour} onClick={() => this.setOperation('=')}/></td>
             </tr>

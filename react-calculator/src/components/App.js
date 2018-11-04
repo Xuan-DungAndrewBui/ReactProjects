@@ -64,8 +64,10 @@ class App extends React.Component {
             return null;
         }
 
+        const parentStyle ="App" + (this.state.maximise ? '-maximise' : '') + (this.state.scientific ? ' scientific' : '') + ` app-${this.state.colour}`
+
         return (
-            <div className={"App" + (this.state.maximise ? '-maximise' : '') + ` app-${this.state.colour}` + (this.state.scientific ? ' scientific': '')} style={{display: 'inline-block'}}>
+            <div className = {parentStyle}>
                 <Topbar show={this.show} maximise={this.maximise} exit={this.exit} changeColour={this.changeColour} changeFormat={this.changeFormat}/>
                 <Calculator show={this.state.show} colour={this.state.colour} scientific={this.state.scientific}/>
             </div>
