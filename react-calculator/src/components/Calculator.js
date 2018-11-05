@@ -3,6 +3,8 @@ import Display from './display';
 import Key from './key';
 import '../index.css';
 
+
+// calculate expression based on the operator that is provided
 const calcExpression = {
     '+': function(firstValue, secondValue ) { return firstValue+secondValue },
     '-': function(firstValue, secondValue ) { return firstValue-secondValue },
@@ -11,10 +13,12 @@ const calcExpression = {
     "=": function(firstValue, secondValue ) { return secondValue}
 };
 
-//App takes care of logic
+//Calculator takes care of calculating logic
 class Calculator extends React.Component {
     constructor(props) {
         super(props);
+
+        //Initial state of the calculator
         this.state = {
             operator: '',
             displayValue: '0',
@@ -23,10 +27,12 @@ class Calculator extends React.Component {
         }
     }
 
+    //Set the current operator that is being used
     setOperation(operator) {
         const firstValue = this.state.firstValue;
         const value = parseFloat(this.state.displayValue);
 
+        //Sets first value if it hasn't been set yet, otherwise calculators previous expression before moving onto next 
         if (firstValue === null) {
             this.setState({
                 firstValue: value,
@@ -38,18 +44,24 @@ class Calculator extends React.Component {
                     displayValue: String(result),
                 });
             }
-
+        
         this.setState({
             operator: operator,
             needOperator: true,
         });
-        } 
+    } 
 
+    //Calculate expression when clicking equals 
     setEquals() {
+        //Grab variables needed to make calculation
         const operator = this.state.operator;
         const firstValue = this.state.firstValue;
         const value = parseFloat(this.state.displayValue);
+
+        //go to key of operator and use 
         const result = calcExpression[operator](firstValue,value);
+
+        //Update calculator display
         this.setState({
             firstValue: result,
             displayValue: String(result),
@@ -57,9 +69,12 @@ class Calculator extends React.Component {
             operator: '='
         });
     }
+
     //Basic functionality of inputting a number into the display
     addInput(number) {
         const needOperator = this.state.needOperator;
+        
+        //Determine if number input is for a new number or to write on an existing number
         if (needOperator) {
             this.setState({
                 displayValue: String(number),
@@ -73,6 +88,7 @@ class Calculator extends React.Component {
         }           
     }
     
+    //Clearing the calculator to initial state
     clearAll() {
         this.setState({
             operator: '',
@@ -82,13 +98,7 @@ class Calculator extends React.Component {
         })
     }
 
-    clearEntry() {
-        this.setState({
-            displayValue:'0',
-            needOperator: true,
-        })
-    }
-    
+    //Divide the current display by 100
     setPercent() {
         const value = parseFloat(this.state.displayValue);
         const percentValue = value/100;
@@ -97,16 +107,19 @@ class Calculator extends React.Component {
         })
     }
     
+    //Toggle between positive and negative
     changeSign() {
         this.setState({
             displayValue: this.state.displayValue * -1
         })
     }
 
+    //Alerts user that scientific mode is only for display
     scientificInput() {
-        alert("Scientific mode is demo only!");
+        alert("Scientific mode is display only!");
     }
 
+    //Add decimal point to the current value
     decimalInput() {
         const displayValue = this.state.displayValue;
         if (displayValue.indexOf('.') > -1) {
@@ -127,6 +140,7 @@ class Calculator extends React.Component {
         const displayValue = this.state.displayValue;
         const scientific = this.props.scientific;
 
+        //Two different formats depending on whether scientific mode is on
         if (scientific) {
             return (
                 <table cellSpacing="0" className="calculator">

@@ -7,6 +7,8 @@ import Topbar from './Topbar';
 class App extends React.Component {
     constructor(props) {
         super(props);
+
+        //State of application
         this.state = {
             show: true,
             maximise: false,
@@ -14,6 +16,8 @@ class App extends React.Component {
             colour: "dark",
             scientific: false,
         };
+    
+    //Binding methods
     this.show=this.show.bind(this);
     this.maximise=this.maximise.bind(this);
     this.exit=this.exit.bind(this);
@@ -21,6 +25,7 @@ class App extends React.Component {
     this.changeFormat=this.changeFormat.bind(this);
     }
 
+    //Toggle maximise state 
     maximise() {
         const maximise = this.state.maximise;
         this.setState({
@@ -29,6 +34,7 @@ class App extends React.Component {
         })
     }
 
+    //Toggle minimise state
     show() {
         const show = this.state.show;
         this.setState({
@@ -36,6 +42,7 @@ class App extends React.Component {
         })
     }
 
+    //Exits the application
     exit() {
         const exit = this.state.exit;
         if (exit === false) {
@@ -46,12 +53,14 @@ class App extends React.Component {
         return null
     }
 
+    //Change colour scheme to specified colour
     changeColour(colour) {
         this.setState({
             colour: colour,
         })
     }
 
+    //Toggle between basic and scientific format
     changeFormat() {
         const scientific = this.state.scientific;
         this.setState({
@@ -60,14 +69,13 @@ class App extends React.Component {
     }
 
     render() {
+        //Hides application if exit state is true, must reload browser to run application again
         if (this.state.exit === true) {
             return null;
         }
 
-        const parentStyle ="App" + (this.state.maximise ? '-maximise' : '') + (this.state.scientific ? ' scientific' : '') + ` app-${this.state.colour}`
-
         return (
-            <div className = {parentStyle}>
+            <div className = {"App" + (this.state.maximise ? '-maximise' : '') + (this.state.scientific ? ' scientific' : '') + ` app-${this.state.colour}`}>
                 <Topbar show={this.show} maximise={this.maximise} exit={this.exit} changeColour={this.changeColour} changeFormat={this.changeFormat}/>
                 <Calculator show={this.state.show} colour={this.state.colour} scientific={this.state.scientific}/>
             </div>
