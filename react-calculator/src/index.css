@@ -24,59 +24,47 @@
     background: none;
     color: white;
     border: none;
-    padding-top: 4px;
     padding-left: 10px;
     font: inherit;
     cursor: pointer;
   }
 
-  .calculator-key-dark {
-    background-color: #6B6B6B;
-    color: white;
-    min-width: 80px;
-    width: stretch;
-    min-height: 80px;
-    height: stretch;
-    border: 1px solid black;
-    text-align: center;
-    line-height: 80px;
-    font-size: 2em;
-    font-family: inherit;
-    cursor: pointer;
-    float: left;
-    display: block;
-  }
+.calculator-key-dark {
+  background-color: #6B6B6B;
+  color: white;
+  min-width: 80px;
+  width: stretch;
+  min-height: 80px;
+  height: stretch;
+  border: 1px solid black;
+  font-size: 2em;
+  font-family: inherit;
+  cursor: pointer;
+}
 
-  .calculator-key-light {
-    background-color: #E5E5E5;
-    color: black;
-    min-width: 80px;
-    width: stretch;
-    min-height: 80px;
-    height: stretch;
-    border: 1px solid black;
-    text-align: center;
-    line-height: 80px;
-    font-size: 2em;
-    font-family: inherit;
-    cursor: pointer;
-    display: block;
-  }
-  .function-dark {
-    background-color: #4F4F4F;
-  }
-  
-  .function-light {
-     background-color: #CFCFCF;
-  }
+.calculator-key-light {
+  background-color: #E5E5E5;
+  color: black;
+  min-width: 80px;
+  width: stretch;
+  min-height: 80px;
+  height: stretch;
+  border: 1px solid black;
+  font-size: 2em;
+  font-family: inherit;
+  cursor: pointer;
+}
+.function-dark {
+  background-color: #4F4F4F;
+}
+
+.function-light {
+    background-color: #CFCFCF;
+}
 
 .calculator{
   width: stretch;
-  table-layout: fixed;
-}
-
-td {
-  padding: 0px;
+  height: stretch;
 }
 
 button {
@@ -135,10 +123,24 @@ button {
     background-color: orange;
   }
 
-.key-0 {
-    text-align: center;
-  }
-
 .operator {
   background-color: orange;
+}
+
+.basicCalculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.scientificCalculator {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr)
+}
+
+.zeroKey {
+  grid-column: 1 / 3;
+}
+
+.zeroKeyScientific {
+  grid-column: 7 / 9;
 }
